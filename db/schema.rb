@@ -16,12 +16,12 @@ ActiveRecord::Schema.define(version: 2020_06_21_161806) do
   enable_extension "plpgsql"
 
   create_table "goals", force: :cascade do |t|
-    t.bigint "matches_id", null: false
-    t.bigint "teams_id", null: false
+    t.bigint "match_id", null: false
+    t.bigint "team_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["matches_id"], name: "index_goals_on_matches_id"
-    t.index ["teams_id"], name: "index_goals_on_teams_id"
+    t.index ["match_id"], name: "index_goals_on_match_id"
+    t.index ["team_id"], name: "index_goals_on_team_id"
   end
 
   create_table "matches", force: :cascade do |t|
@@ -38,6 +38,6 @@ ActiveRecord::Schema.define(version: 2020_06_21_161806) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
-  add_foreign_key "goals", "matches", column: "matches_id"
-  add_foreign_key "goals", "teams", column: "teams_id"
+  add_foreign_key "goals", "matches"
+  add_foreign_key "goals", "teams"
 end
