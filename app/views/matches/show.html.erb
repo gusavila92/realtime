@@ -1,0 +1,22 @@
+<div class="container">
+  <div class="row">
+    <div class="col">
+      <h1>Goles</h1>
+
+      <table style="width:100%">
+        <tr>
+          <th>Equipo anotador</th>
+          <th>Jugador</th>
+          <th>Minuto</th>
+        </tr>
+        <% @goals.each do |goal| %>
+          <tr>
+            <td><%= goal.team.name %></td>
+            <td><%= goal.player.name %></td>
+            <td><%= goal.minute %></td>
+          </tr>
+        <% end %>
+      </table> 
+    </div>
+  </div>
+</div>

@@ -1,0 +1,24 @@
+<div class="container">
+  <div class="row">
+    <div class="col">
+      <h1>Partidos</h1>
+      
+      <table style="width:100%">
+        <tr>
+          <th>ID</th>
+          <th>Estadio</th>
+          <th>Equipo local</th>
+          <th>Equipo visitante</th>
+        </tr>
+        <% @matches.each do |match| %>
+          <tr>
+            <td><%= link_to match.id, match %></td>
+            <td><%= match.stadium %></td>
+            <td><%= match.home_team.name %></td>
+            <td><%= match.away_team.name %></td>
+          </tr>
+        <% end %>
+      </table> 
+    </div>
+  </div>
+</div>
