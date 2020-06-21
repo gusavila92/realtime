@@ -10,10 +10,19 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_06_21_154927) do
+ActiveRecord::Schema.define(version: 2020_06_21_161806) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "goals", force: :cascade do |t|
+    t.bigint "matches_id", null: false
+    t.bigint "teams_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["matches_id"], name: "index_goals_on_matches_id"
+    t.index ["teams_id"], name: "index_goals_on_teams_id"
+  end
 
   create_table "matches", force: :cascade do |t|
     t.bigint "away_team_id", null: false
@@ -29,4 +38,6 @@ ActiveRecord::Schema.define(version: 2020_06_21_154927) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
+  add_foreign_key "goals", "matches", column: "matches_id"
+  add_foreign_key "goals", "teams", column: "teams_id"
 end
