@@ -3,20 +3,25 @@
     <div class="col">
       <h1>Goles</h1>
 
-      <table style="width:100%">
-        <tr>
-          <th>Equipo anotador</th>
-          <th>Jugador</th>
-          <th>Minuto</th>
-        </tr>
-        <% @goals.each do |goal| %>
+      <table style="width:100%" id="goals">
+        <thead>
           <tr>
-            <td><%= goal.team.name %></td>
-            <td><%= goal.player.name %></td>
-            <td><%= goal.minute %></td>
+            <th>Equipo anotador</th>
+            <th>Jugador</th>
+            <th>Minuto</th>
           </tr>
-        <% end %>
+        </thead>
+        
+        <tbody>
+          <%= render partial: 'goals/goals', locals: { goals: @goals } %>
+        </tbody>
       </table> 
     </div>
   </div>
 </div>
+
+<script type="text/javascript">
+  $(document).ready(function(){
+    polling(<%= @match.id %>);
+  });
+</script>
