@@ -4,6 +4,6 @@ Rails.application.routes.draw do
   root 'matches#index'
 
   resources :matches, only: [:show] do
-    resources :goals, only: [:index]
+    resources :goals, only: [:index, :create]
   end
 end
