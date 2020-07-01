@@ -14,7 +14,7 @@ class GoalsController < ApplicationController
     goal = Goal.new(match: match, team: team, player: player, minute: minute)
 
     if goal.save
-      MatchChannel.broadcast_to(match, { team: team.name, player: player.name, minute: minute })
+      ActionCable.server.broadcast("match_#{match.id}", { team: team.name, player: player.name, minute: minute })
       head :ok
     else
       head :bad_request  

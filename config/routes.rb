@@ -5,5 +5,9 @@ Rails.application.routes.draw do
 
   resources :matches, only: [:show] do
     resources :goals, only: [:index, :create]
+
+    member do
+      get 'rethinkdb', to: 'matches#rethinkdb'
+    end
   end
 end
