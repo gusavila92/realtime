@@ -7,7 +7,7 @@ Rails.application.routes.draw do
     resources :goals, only: [:index, :create]
 
     member do
-      get 'rethinkdb', to: 'matches#rethinkdb'
+      get 'polling', to: 'matches#polling'
     end
   end
 end

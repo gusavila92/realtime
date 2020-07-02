@@ -8,13 +8,7 @@ class MatchesController < ApplicationController
     @goals = @match.goals.order(:minute)
   end
 
-  def rethinkdb
-    # r.connect(:host => 'localhost', :port => 28015).repl
-    # cursor = r.table('goals').run
-    # cursor.each do |goal|
-    #   p goal
-    # end
-
+  def polling
     @match = Match.find(params[:id])
     @goals = @match.goals.order(:minute)
   end

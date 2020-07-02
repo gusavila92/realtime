@@ -15,3 +15,22 @@ require("jquery")
 //
 // const images = require.context('../images', true)
 // const imagePath = (name) => images(name, true)
+
+$(document).on('turbolinks:load', function() {
+  if ($('#goals-polling').length === 0) {
+    return;
+  }
+
+  var sleep = time => new Promise(resolve => setTimeout(resolve, time));
+  var poll = (promiseFn, time) => promiseFn().then(sleep(time).then(() => poll(promiseFn, time)));
+
+  poll(() => new Promise(() => {
+    var today = new Date();
+    var date = today.getFullYear()+'-'+(today.getMonth()+1)+'-'+today.getDate();
+    var time = today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds();
+    var dateTime = date+' '+time;
+
+    console.log(`Polling ... ${dateTime}`);
+    $.get(`/matches/11/goals`);
+  }), 5000);
+});

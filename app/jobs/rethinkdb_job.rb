@@ -9,6 +9,8 @@ class RethinkdbJob < ApplicationJob
     cursor = r.table("goals").changes.run
 
     cursor.each do |change|
+      # Operación bloqueante
+      
       p change
 
       goal = change['new_val']
